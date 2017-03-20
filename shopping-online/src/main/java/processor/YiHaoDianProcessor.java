@@ -180,7 +180,6 @@ public class YiHaoDianProcessor implements PageProcessor {
 //                                .url("http://www.yhd.com/header/ajaxGetGlobalLeftFloatMenuDataV12.do?callback=GLOBALLEFTMENU_137778&categoryId=137778&cindex=2&leftMenuProvinceId=1&isFixTopNav=true")
 //                                .build()
                 )
-
                 .addPipeline(new ConsolePipeline())
 //                .setScheduler()
                 .thread(20)

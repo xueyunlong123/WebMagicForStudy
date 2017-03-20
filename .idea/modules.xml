@@ -4,7 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WebMagicForStudy.iml" filepath="$PROJECT_DIR$/WebMagicForStudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/guo-mei-online/guo-mei-online.iml" filepath="$PROJECT_DIR$/guo-mei-online/guo-mei-online.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shopping-online/guo-mei-online.iml" filepath="$PROJECT_DIR$/shopping-online/guo-mei-online.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shopping-online/shopping-online.iml" filepath="$PROJECT_DIR$/shopping-online/shopping-online.iml" />
       <module fileurl="file://$PROJECT_DIR$/webmagic-core/webmagic-core.iml" filepath="$PROJECT_DIR$/webmagic-core/webmagic-core.iml" />
     </modules>
   </component>
