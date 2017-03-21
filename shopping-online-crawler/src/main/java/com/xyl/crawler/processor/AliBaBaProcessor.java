@@ -12,6 +12,7 @@ import webmagic.Page;
 import webmagic.Request;
 import webmagic.Site;
 import webmagic.Spider;
+import webmagic.downloader.HttpClientUtilProxyAbuYun;
 import webmagic.processor.PageProcessor;
 import webmagic.utils.HttpConstant;
 
@@ -31,37 +32,41 @@ public class AliBaBaProcessor implements PageProcessor {
     @Override
     public void process(Page page) {
 
-        log.debug("---------------------------------解析页面开始--------------------------------");
-        //发现url
-        if (page.getRequest().getUrl().contains("https://s.1688.com/company/company_search.htm")){
-
-            List<String> detailUrls = page.getHtml().xpath("//div[@class='list-item-title']//a[@class='list-item-title-text']").links().all();
-            page.addTargetRequests(detailUrls);
-
-            String nextUrl = page.getHtml().xpath("//div[@class='page-bottom']//a[@class='page-next']").links().get();
-            page.addTargetRequest(nextUrl);
-
-            //解析公司档案页面
-        }else if (page.getRequest().getUrl().contains("creditdetail")){
-            //发现
-            log.debug("解析公司档案");
-
-
+        if (page.getRawText().contains("淘宝会员（仅限会员名）请在此登录")){
+            log.error("网站限制当前主机ip，请更换ip");
         }else {
-            //发现公司档案页面
-            log.debug("解析详情页面");
-            Document document = Jsoup.parse(page.getRawText());
-            Element element = document.getElementsByAttributeValue("class","top-nav-bar-box").get(0);
-            //添加公司档案url
-            String companyFileUrl = element.getElementsByAttributeValue("data-page-name","creditdetail").get(0).getElementsByTag("a").attr("href");
-            page.addTargetRequest(
-                    Request.builder()
-                            .url(companyFileUrl)
-                            .extras(new HashedMap(){{
-                                put("companyUrl",page.getRequest().getUrl());
-                            }})
-                            .build()
-            );
+            log.debug("---------------------------------解析页面开始--------------------------------");
+            //发现url
+            if (page.getRequest().getUrl().contains("https://s.1688.com/company/company_search.htm")) {
+
+                List<String> detailUrls = page.getHtml().xpath("//div[@class='list-item-title']//a[@class='list-item-title-text']").links().all();
+                page.addTargetRequests(detailUrls);
+
+                String nextUrl = page.getHtml().xpath("//div[@class='page-bottom']//a[@class='page-next']").links().get();
+                page.addTargetRequest(nextUrl);
+
+                //解析公司档案页面
+            } else if (page.getRequest().getUrl().contains("creditdetail")) {
+                //发现
+                log.debug("解析公司档案");
+
+
+            } else {
+                //发现公司档案页面
+                log.debug("解析详情页面");
+                Document document = Jsoup.parse(page.getRawText());
+                Element element = document.getElementsByAttributeValue("class", "top-nav-bar-box").get(0);
+                //添加公司档案url
+                String companyFileUrl = element.getElementsByAttributeValue("data-page-name", "creditdetail").get(0).getElementsByTag("a").attr("href");
+                page.addTargetRequest(
+                        Request.builder()
+                                .url(companyFileUrl)
+                                .extras(new HashedMap() {{
+                                    put("companyUrl", page.getRequest().getUrl());
+                                }})
+                                .build()
+                );
+            }
         }
 
     }
@@ -79,6 +84,7 @@ public class AliBaBaProcessor implements PageProcessor {
 
     public void run(){
         Spider.create(new AliBaBaProcessor())
+                .setDownloader(new HttpClientUtilProxyAbuYun())
                 .site(
                         Site.me()
                                 .addHeader("user-agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.100 Safari/537.36")
