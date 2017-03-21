@@ -31,7 +31,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * A spider contains four modules: Downloader, Scheduler, PageProcessor and
  * Pipeline.<br>
  * Every module is a field of Spider. <br>
- * The modules are defined in interface. <br>
+ * The modules are defined in api. <br>
  * You can customize a spider with various implementations of them. <br>
  * Examples: <br>
  * <br>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xyl.crawler.dao.api.AlibabaModelMapper" >
+  <resultMap id="BaseResultMap" type="com.xyl.crawler.model.AlibabaModel" >
+    <id column="url" property="url" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="managementModel" property="managementmodel" jdbcType="VARCHAR" />
+    <result column="connPerson" property="connperson" jdbcType="VARCHAR" />
+    <result column="phoneNumber" property="phonenumber" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="creatTime" property="creattime" jdbcType="VARCHAR" />
+    <result column="registeredCapital" property="registeredcapital" jdbcType="VARCHAR" />
+    <result column="businessScope" property="businessscope" jdbcType="VARCHAR" />
+    <result column="registerAddress" property="registeraddress" jdbcType="VARCHAR" />
+    <result column="productAndNum" property="productandnum" jdbcType="VARCHAR" />
+    <result column="officeArea" property="officearea" jdbcType="VARCHAR" />
+    <result column="yearMoney" property="yearmoney" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    url, name, province, number, managementModel, connPerson, phoneNumber, address, creatTime, 
+    registeredCapital, businessScope, registerAddress, productAndNum, officeArea, yearMoney
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_alibaba
+    where url = #{url,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_alibaba
+    where url = #{url,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xyl.crawler.model.AlibabaModel" >
+    insert into t_alibaba (url, name, province, 
+      number, managementModel, connPerson, 
+      phoneNumber, address, creatTime, 
+      registeredCapital, businessScope, registerAddress, 
+      productAndNum, officeArea, yearMoney
+      )
+    values (#{url,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{number,jdbcType=VARCHAR}, #{managementmodel,jdbcType=VARCHAR}, #{connperson,jdbcType=VARCHAR}, 
+      #{phonenumber,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{creattime,jdbcType=VARCHAR}, 
+      #{registeredcapital,jdbcType=VARCHAR}, #{businessscope,jdbcType=VARCHAR}, #{registeraddress,jdbcType=VARCHAR}, 
+      #{productandnum,jdbcType=VARCHAR}, #{officearea,jdbcType=VARCHAR}, #{yearmoney,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xyl.crawler.model.AlibabaModel" >
+    insert into t_alibaba
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="managementmodel != null" >
+        managementModel,
+      </if>
+      <if test="connperson != null" >
+        connPerson,
+      </if>
+      <if test="phonenumber != null" >
+        phoneNumber,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="creattime != null" >
+        creatTime,
+      </if>
+      <if test="registeredcapital != null" >
+        registeredCapital,
+      </if>
+      <if test="businessscope != null" >
+        businessScope,
+      </if>
+      <if test="registeraddress != null" >
+        registerAddress,
+      </if>
+      <if test="productandnum != null" >
+        productAndNum,
+      </if>
+      <if test="officearea != null" >
+        officeArea,
+      </if>
+      <if test="yearmoney != null" >
+        yearMoney,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="managementmodel != null" >
+        #{managementmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="connperson != null" >
+        #{connperson,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredcapital != null" >
+        #{registeredcapital,jdbcType=VARCHAR},
+      </if>
+      <if test="businessscope != null" >
+        #{businessscope,jdbcType=VARCHAR},
+      </if>
+      <if test="registeraddress != null" >
+        #{registeraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="productandnum != null" >
+        #{productandnum,jdbcType=VARCHAR},
+      </if>
+      <if test="officearea != null" >
+        #{officearea,jdbcType=VARCHAR},
+      </if>
+      <if test="yearmoney != null" >
+        #{yearmoney,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xyl.crawler.model.AlibabaModel" >
+    update t_alibaba
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="managementmodel != null" >
+        managementModel = #{managementmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="connperson != null" >
+        connPerson = #{connperson,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null" >
+        creatTime = #{creattime,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredcapital != null" >
+        registeredCapital = #{registeredcapital,jdbcType=VARCHAR},
+      </if>
+      <if test="businessscope != null" >
+        businessScope = #{businessscope,jdbcType=VARCHAR},
+      </if>
+      <if test="registeraddress != null" >
+        registerAddress = #{registeraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="productandnum != null" >
+        productAndNum = #{productandnum,jdbcType=VARCHAR},
+      </if>
+      <if test="officearea != null" >
+        officeArea = #{officearea,jdbcType=VARCHAR},
+      </if>
+      <if test="yearmoney != null" >
+        yearMoney = #{yearmoney,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where url = #{url,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xyl.crawler.model.AlibabaModel" >
+    update t_alibaba
+    set name = #{name,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      managementModel = #{managementmodel,jdbcType=VARCHAR},
+      connPerson = #{connperson,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      creatTime = #{creattime,jdbcType=VARCHAR},
+      registeredCapital = #{registeredcapital,jdbcType=VARCHAR},
+      businessScope = #{businessscope,jdbcType=VARCHAR},
+      registerAddress = #{registeraddress,jdbcType=VARCHAR},
+      productAndNum = #{productandnum,jdbcType=VARCHAR},
+      officeArea = #{officearea,jdbcType=VARCHAR},
+      yearMoney = #{yearmoney,jdbcType=VARCHAR}
+    where url = #{url,jdbcType=VARCHAR}
+  </update>
+</mapper>

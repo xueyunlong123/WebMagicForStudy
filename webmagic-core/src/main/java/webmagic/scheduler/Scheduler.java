@@ -5,7 +5,7 @@ import webmagic.Task;
 
 /**
  * Scheduler is the part of url management.<br>
- * You can implement interface Scheduler to do:
+ * You can implement api Scheduler to do:
  * manage urls to fetch
  * remove duplicate urls
  *
