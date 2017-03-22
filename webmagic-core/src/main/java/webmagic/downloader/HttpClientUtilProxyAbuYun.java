@@ -54,12 +54,7 @@ public class HttpClientUtilProxyAbuYun implements Downloader {
         HttpResponse response = null;
         //准备代理服务身份验证信息
         //代理服务器
-        final String ProxyHost = "proxy.abuyun.com";
-        final Integer ProxyPort =9020;
 
-        // 代理隧道验证信息
-        final String ProxyUser = "HML66NR29K9JC6BD";
-        final String ProxyPass = "5C16D27CB4D877FA";
 
         HttpHost target = new HttpHost(ProxyHost, ProxyPort, "http");
 
